@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import { INCREMENT, DECREMENT, TRIPLE, HALVE, RESET } from "./types";
 
 export const CountContext = React.createContext({}); //create a context
 
@@ -7,28 +8,29 @@ const initialState = {
 };
 
 function reducer(state, action) {
+  console.log(action);
   switch (action.type) {
-    case "INCREMENT":
+    case INCREMENT:
       return {
         count: state.count + 1,
       };
 
-    case "DECREMENT":
+    case DECREMENT:
       return {
         count: state.count - 1,
       };
 
-    case "TRIPLE":
+    case TRIPLE:
       return {
         count: state.count * 3,
       };
-    case "HALVE":
+    case HALVE:
       return {
         count: state.count / 2,
       };
-    case "RESET":
+    case RESET:
       return {
-        count: (state.count = 0),
+        count: 0,
       };
 
     default:
@@ -36,7 +38,9 @@ function reducer(state, action) {
   }
 }
 
+//children input below is deconstructed from props obj
 function CountContextWrapper({ children }) {
+  //useReducer takes 2 args. a func and a initialstate and returns a state and a dispatch func
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <CountContext.Provider value={{ state, dispatch }}>

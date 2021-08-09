@@ -1,6 +1,14 @@
 import React, { useContext } from "react";
 import { CountContext } from "../../context/CountContext";
 
+import {
+  INCREMENT,
+  DECREMENT,
+  TRIPLE,
+  HALVE,
+  RESET,
+} from "../../context/types";
+
 function Counter() {
   //   const context = useContext(CountContext);
   //   console.log(context);
